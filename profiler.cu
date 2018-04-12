@@ -20,6 +20,6 @@ void get_gpu_data(int gpu_index, struct gpu_props *props) {
     if (p.major > 5) props->max_sm_blocks = 32;
     else if (p.major > 3) props->max_sm_blocks = 16;
     else props->max_sm_blocks = 8;
-    max_total_threads = props->max_sm_threads * props->sm_count;
-    max_total_blocks = props->max_sm_blocks * props->sm_count;
+    props->max_total_threads = props->max_sm_threads * props->sm_count;
+    props->max_total_blocks = props->max_sm_blocks * props->sm_count;
 }
