@@ -1,5 +1,5 @@
 CPP = gcc
-CPPFLAGS = -std=gnu11 -Wall -Wextra -Wpedantic
+CPPFLAGS = -std=gnu++11 -Wall -Wextra -Wpedantic
 NVCC = nvcc
 NVFLAGS = -Xcompiler '-fPIC'
 
