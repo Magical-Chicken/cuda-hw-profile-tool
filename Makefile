@@ -2,7 +2,7 @@ TARGET  = cuda-profiler
 CC 		= gcc
 CFLAGS 	= -std=gnu11 -Wall -Wextra -Wpedantic
 NVCC 	= nvcc
-NVFLAGS = -arch compute_62
+NVFLAGS =
 
 HEADERS = $(shell find . -name '*.h')
 COBJ 	= $(shell find . -name '*.c' | sed -e 's/\.c/\.o/')
