@@ -4,17 +4,19 @@ NVCC = nvcc
 NVFLAGS = -Xcompiler '-fPIC'
 
 HEADERS = $(shell find . -name '*.h')
+CPPOBJ = $(shell find . -name '*.cpp' | sed -e 's/\.cpp/\.o/')
 NVOBJ = $(shell find . -name '*.cu' | sed -e 's/\.cu/\.o/')
 
 CUDA_L64 = -L/opt/cuda-8.0/lib64
 
 TARGET_SO = cuda-hw-profile-tool.so
+TARGET_PROG = view-data
 
 
-all: $(CUDA_SO) view-data
+all: $(TARGET_SO) $(TARGET_PROG)
 	@:
 
-view-data: view-data.o $(TARGET_SO)
+$(TARGET_PROG): view-data.o $(TARGET_SO)
 	$(CC) $(CFLAGS) -o $@ $^
 
 $(TARGET_SO): $(NVOBJ)
@@ -28,6 +30,6 @@ $(TARGET_SO): $(NVOBJ)
 	$(NVCC) $(NVFLAGS) -dc -o $@ $<
 
 clean:
-	rm -rf *.o $(TARGET)
+	rm -rf *.o $(TARGET_SO) $(TARGET_PROG)
 
 .PHONY: all clean
