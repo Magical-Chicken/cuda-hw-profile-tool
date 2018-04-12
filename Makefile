@@ -1,22 +1,16 @@
-TARGET  = cuda-profiler
-CC 		= gcc
-CFLAGS 	= -std=gnu11 -Wall -Wextra -Wpedantic
+TARGET  = view-info
 NVCC 	= nvcc
 NVFLAGS =
 
 HEADERS = $(shell find . -name '*.h')
-COBJ 	= $(shell find . -name '*.c' | sed -e 's/\.c/\.o/')
 NVOBJ 	= $(shell find . -name '*.cu' | sed -e 's/\.cu/\.o/')
 
 
 all: $(TARGET)
 	@:
 
-$(TARGET): $(COBJ) $(NVOBJ)
+$(TARGET): $(NVOBJ)
 	$(CC) $(CFLAGS) -o $@ $^
-
-%.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -c -o $@ $<
 
 %.o: %.cu $(HEADERS)
 	$(NVCC) $(NVFLAGS) -c -o $@ $<
