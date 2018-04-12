@@ -11,7 +11,7 @@ void get_gpu_data(int gpu_index, struct gpu_props *props) {
     cudaDeviceProp p;
     cudaGetDeviceProperties(&p, gpu_index);
     props->comp_level.major = p.major;
-    props->comp_level.major = p.minor;
+    props->comp_level.minor = p.minor;
     props->gpu_index = gpu_index;
     props->max_sm_threads = p.maxThreadsPerMultiProcessor;
     props->max_block_size = p.maxThreadsPerBlock;
