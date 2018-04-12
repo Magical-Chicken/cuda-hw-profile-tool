@@ -1,7 +1,7 @@
 CPP = gcc
 CPPFLAGS = -std=gnu11 -Wall -Wextra -Wpedantic
 NVCC = nvcc
-NVFLAGS =
+NVFLAGS = -Xcompiler '-fPIC'
 
 HEADERS = $(shell find . -name '*.h')
 NVOBJ = $(shell find . -name '*.cu' | sed -e 's/\.cu/\.o/')
